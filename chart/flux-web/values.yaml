@@ -8,8 +8,8 @@ replicaCount: 1
 namespace:  flux
 
 backend:
-  repository: fluxweb/backend
-  tag: 0.1
+  repository: fatliverfreddy/fluxweb-backend
+  tag: latest
   pullPolicy: Always
   containerPort: 3000
   env:
@@ -17,8 +17,8 @@ backend:
   service: {}
     # annotations: ""
 frontend:
-  repository: fluxweb/frontend
-  tag: 0.1
+  repository: fatliverfreddy/fluxweb-frontend
+  tag: latest
   pullPolicy: Always
   containerPort: 8080
   env:
