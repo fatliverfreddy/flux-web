@@ -1,6 +1,6 @@
 <template>
   <div class="namespace-select" v-show="namespaces.length">
-    <select v-model="namespace" class="namespace-input" @keyup.enter="selectNamespace">
+    <select v-model="namespace" class="namespace-input" @keyup.enter="selectNamespace" v-on:change="selectNamespace">
       <option :value="null" disabled>Select Namespace</option>
       <option
         v-for="namespace in namespaces"
@@ -8,11 +8,7 @@
         :key="namespace"
       >{{namespace}}</option>
     </select>
-    <button
-      @click="selectNamespace"
-      class="namespace-button"
-      :disabled="loading"
-    >{{loading ? 'Loading, please wait' : 'Select'}}</button>
+    <span class="namespace-loading">{{loading ? 'Loading...' : ''}}</span>
   </div>
 </template>
 
@@ -104,17 +100,9 @@ export default class NamespaceSelect extends Vue {
     }
   }
 
-  .namespace-button {
-    margin-left: 10px;
-    background-color: #f0f0fb;
-    border: none;
-    font-family: sans-serif;
-    font-weight: 100;
-    font-size: 13px;
-    color: #97989c;
-    height: 30px;
-    border-radius: 7px;
-    padding: 8px;
+  .namespace-loading {
+    font-size: 12px;
+    padding-left: 10px;
   }
 }
 </style>
