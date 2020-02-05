@@ -2,12 +2,13 @@
   <div class="navbar">
     <div class="info">
       <div class="details">
+        <!-- <img class="cr__logo" src="@/assets/images/logo.png"> -->
         <span class="details__item details__label cr__label">Flux Web</span>
       </div>
       <ul class="icons">
         <li class="icon">
           <router-link to="/">
-            <i class="fas fa-rocket"></i>
+            <i class="fas fa-home"></i>
           </router-link>
         </li>
         <li class="icon">
@@ -64,7 +65,10 @@ export default class Navbar extends Vue {
         user-select: none;
         margin: 0 0 0 15px;
         color: #bbc7dc;
-        font-family: SpoilerHE;
+        font-family: 'Ubuntu', sans-serif;
+      }
+      .cr__logo {
+        height: 50px;
       }
     }
     .icons {
