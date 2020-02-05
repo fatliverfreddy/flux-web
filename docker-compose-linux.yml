@@ -1,0 +1,42 @@
+version: "3.7"
+services:
+  flux-web-frontend:
+    network_mode: host
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    tty: true
+    restart: always
+    environment:
+      APP_PORT: 8081
+      NODE_ENV: development
+      API_EXTERNAL_URL: //localhost/api/v1
+      WS_URL: ws://localhost:3000/ws/v1
+      READ_ONLY: "false"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+  flux-web-backend:
+    network_mode: host
+    build:
+      context: ./backend
+    environment:
+      FLUX_URL: http://localhost:3030
+      KUBE_CONFIG_PATH: /usr/src/.kubeconfig
+      READ_ONLY: "false"
+    ports:
+      - 3000:3000
+    volumes:
+      - ~/.kube/config:/usr/src/.kubeconfig
+
+  nginx:
+    network_mode: host
+    image: nginx:alpine
+    ports:
+      - 80:80
+    volumes:
+      - .docker/default-linux.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - flux-web-backend
+      - flux-web-frontend
