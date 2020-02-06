@@ -12,6 +12,7 @@
   background-size: contain;
   width: 35px;
   height: 35px;
+  background-repeat: no-repeat;
 }
 
 /* Tooltip container */
