@@ -10,7 +10,7 @@ export default {
       { hid: "description", name: "description", content: "Flux web" }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }
+      { rel: "icon", type: "image/x-icon", href: "/favicon.png" }
     ]
   },
   loading: { color: "#3B8070" },
