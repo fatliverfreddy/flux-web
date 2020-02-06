@@ -99,7 +99,7 @@ export default class WorkloadStatus extends Vue {
         break;
 
       case "releasing":
-        statusLiteral = "Release Failed";
+        statusLiteral = "Releasing";
         break;
 
       case "behind":
