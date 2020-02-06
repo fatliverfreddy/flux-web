@@ -69,7 +69,8 @@ export default class WorkloadsList extends Vue {
     },
     {
       label: "Available tags",
-      field: "available_tags"
+      field: "available_tags",
+      sortable: false
     }
   ];
 
