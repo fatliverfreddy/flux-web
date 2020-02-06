@@ -21,3 +21,6 @@ dist
 *.sln
 *.sw?
 .DS_Store
+
+# Assets vector source
+assets/vectors
