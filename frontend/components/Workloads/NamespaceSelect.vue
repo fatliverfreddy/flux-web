@@ -1,6 +1,11 @@
 <template>
   <div class="namespace-select" v-show="namespaces.length">
-    <select v-model="namespace" class="namespace-input" @keyup.enter="selectNamespace" v-on:change="selectNamespace">
+    <select
+      v-model="namespace"
+      class="namespace-input"
+      @keyup.enter="selectNamespace"
+      v-on:change="selectNamespace"
+    >
       <option :value="null" disabled>Select Namespace</option>
       <option
         v-for="namespace in namespaces"
@@ -84,17 +89,20 @@ export default class NamespaceSelect extends Vue {
     border: none;
     width: 200px;
     box-sizing: border-box;
-    padding: 0 0 0 30px;
-    font-family: 'Ubuntu', sans-serif;
+    padding: 0 0 0 15px;
+    font-family: "Ubuntu", sans-serif;
     font-weight: 300;
     font-size: 13px;
     color: #6a6c71;
     &::placeholder {
       color: #b6b9c3;
     }
+    &:hover {
+      background: #e1e1f5;
+    }
     &:focus {
       outline: none;
-      padding: 0 0 0 29px;
+      padding: 0 0 0 14px;
       color: #6a6c71;
       border: 1px solid #b6b9c3;
     }
@@ -102,6 +110,7 @@ export default class NamespaceSelect extends Vue {
 
   .namespace-loading {
     font-size: 12px;
+    font-family: "Ubuntu", sans-serif;
     padding-left: 10px;
   }
 }

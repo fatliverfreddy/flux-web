@@ -11,7 +11,7 @@
       @input="valueChanged"
     >
       <template slot="singleLabel" slot-scope="{ option }">
-        <strong>{{ option.tag }}</strong>
+        <strong class="selected__tag">{{ option.tag }}</strong>
       </template>
       <template slot="option" slot-scope="props">
         <div class="option__desc">
@@ -27,6 +27,11 @@
 
 <style lang="scss">
 @import "../../assets/scss/include";
+
+.selected__tag {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 14px;
+}
 .available-tag-select-wrapper {
   min-width: max-content;
   .multiselect__content-wrapper {
@@ -34,8 +39,14 @@
     right: 0;
   }
   .option__desc {
+    .option__tag {
+      font-family: "Ubuntu Mono", monospace;
+      font-size: 14px;
+    }
     .option__date {
+      font-family: "Ubuntu", sans-serif;
       float: right;
+      font-size: 14px;
     }
   }
 }

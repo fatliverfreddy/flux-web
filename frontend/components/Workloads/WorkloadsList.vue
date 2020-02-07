@@ -4,6 +4,7 @@
     <vue-good-table
       :columns="columns"
       :rows="workloads"
+      styleClass="vgt-table striped"
       :search-options="{
         enabled: true,
         externalQuery: searchTerm
@@ -124,21 +125,45 @@ export default class WorkloadsList extends Vue {
   .vgt-table {
     border: none;
     font-family: sans-serif;
-    &.bordered {
+    border-collapse: collapse;
+    border-radius: 7px;
+    &.striped {
+      tr {
+        &:nth-child(odd) {
+          background: #f4f4fd;
+        }
+        &:nth-child(even) {
+          background: #fafaff;
+        }
+        &:hover {
+          background: #e6e6f7;
+        }
+      }
       td,
       th {
         border: none;
-        background: none;
       }
       td {
         color: #3c5171;
-        font-size: 15px;
+        font-size: 14px;
         white-space: nowrap;
+        font-family: 'Ubuntu Mono', monospace;
+        vertical-align: middle;
+        padding-top: 2px;
+        padding-bottom: 2px;
       }
       th {
-        color: #9aa9c2;
+        color: #2e395a;
         font-weight: 400;
-        font-size: 14px;
+        font-size: 15px;
+        background: #f0f0fa;
+        font-family: "Ubuntu", sans-serif;
+        &:hover {
+          background: #e1e1f5;
+        }
+        &:active {
+          background: #d4d4ee;
+        }
       }
     }
   }

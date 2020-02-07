@@ -10,9 +10,10 @@
 .icon {
   background-position: center center;
   background-size: contain;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   background-repeat: no-repeat;
+
 }
 
 /* Tooltip container */
@@ -41,7 +42,7 @@
   z-index: 1;
   bottom: 125%;
   left: 50%;
-  margin-left: -60px;
+  margin-left: -50px;
 
   /* Fade in tooltip */
   opacity: 0;
