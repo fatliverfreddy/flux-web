@@ -47,18 +47,28 @@ export default class WorkloadRelease extends Vue {
   padding: 8px;
   color: #fff;
   border-radius: 5px;
+  font-family: "Ubuntu", sans-serif;
   font-size: 11px;
+  border: none;
+  transition-duration: 0.2s;
   &:hover {
     background: #5c6484;
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.4), 0 3px 8px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+  }
+  &:active {
+    background: #4a506b;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2), 0 1px 3px 0 rgba(0,0,0,0.19);
     cursor: pointer;
   }
   &:focus {
     outline: 0;
   }
   &:disabled {
-    cursor: default;
+    cursor: not-allowed;
     background: #f0f0fa;
-    color: #948f8f;
+    color: #b9b3b3;
+    box-shadow: none;
   }
 }
 </style>

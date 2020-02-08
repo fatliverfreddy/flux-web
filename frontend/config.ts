@@ -1,7 +1,7 @@
 
 class Config {
   config: any = {
-    githubUrl: 'https://github.com/flux-web/flux-web'
+    githubUrl: 'https://github.com/fatliverfreddy/flux-web'
   };
 }
 

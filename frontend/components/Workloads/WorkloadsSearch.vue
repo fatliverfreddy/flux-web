@@ -1,5 +1,6 @@
 <template>
   <div class="workloads-search">
+    <i class="input-icon fas fa-search"></i>
     <input
       type="text"
       name="search"
@@ -7,6 +8,7 @@
       placeholder="Search"
       autocomplete="off"
       v-model="searchTerm"
+      icon-class="fa-home"
       @input="searchTermChanged"
     />
   </div>
@@ -25,8 +27,8 @@
     border: none;
     width: 100%;
     box-sizing: border-box;
-    padding: 0 0 0 30px;
-    font-family: SpoilerHE;
+    padding: 0 0 0 40px;
+    font-family: 'Ubuntu', sans-serif;
     font-weight: 300;
     font-size: 13px;
     color: #6a6c71;
@@ -35,17 +37,18 @@
     }
     &:focus {
       outline: none;
-      padding: 0 0 0 29px;
+      padding: 0 0 0 39px;
       color: #6a6c71;
       border: 1px solid #b6b9c3;
     }
   }
   .input-icon {
     position: absolute;
-    right: 10px;
+    left: 10px;
     top: 50%;
     color: #9095a4;
-    transform: translateY(-40%);
+    transform: translateY(-50%);
+    font-size: 14px;
   }
 }
 </style>
