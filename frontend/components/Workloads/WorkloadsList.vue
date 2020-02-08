@@ -112,6 +112,29 @@ export default class WorkloadsList extends Vue {
 <style lang="scss">
 @import "../../assets/scss/include";
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  display: none;
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #99a9c2;
+  &:hover {
+    background: #4b5677;
+  }
+  &:active{
+    background: #303b5d;
+  }
+
+}
+
 .workloads-list {
   height: calc(100% - 110px);
   min-height: 250px;
@@ -147,7 +170,7 @@ export default class WorkloadsList extends Vue {
         color: #3c5171;
         font-size: 14px;
         white-space: nowrap;
-        font-family: 'Ubuntu Mono', monospace;
+        font-family: "Ubuntu Mono", monospace;
         vertical-align: middle;
         padding-top: 2px;
         padding-bottom: 2px;

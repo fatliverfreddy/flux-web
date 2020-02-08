@@ -32,11 +32,18 @@
   font-family: "Ubuntu Mono", monospace;
   font-size: 14px;
 }
+
 .available-tag-select-wrapper {
   min-width: max-content;
   .multiselect__content-wrapper {
     min-width: max-content;
     right: 0;
+  }
+  .multiselect__option--highlight {
+    background: #4b5677;
+    &:after {
+      background: #4b5677;
+    }
   }
   .option__desc {
     .option__tag {
