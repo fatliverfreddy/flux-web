@@ -100,6 +100,7 @@ export default class NamespaceSelect extends Vue {
       background: #f7f7fd;
     }
     &:focus {
+      background: #f0f0fb;
       outline: none;
       padding: 0 0 0 14px;
       color: #6a6c71;
