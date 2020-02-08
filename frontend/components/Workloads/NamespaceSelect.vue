@@ -6,7 +6,6 @@
       @keyup.enter="selectNamespace"
       v-on:change="selectNamespace"
     >
-      <option :value="null" disabled>Select Namespace</option>
       <option
         v-for="namespace in namespaces"
         v-bind:value="namespace"
@@ -98,7 +97,7 @@ export default class NamespaceSelect extends Vue {
       color: #b6b9c3;
     }
     &:hover {
-      background: #e1e1f5;
+      background: #f7f7fd;
     }
     &:focus {
       outline: none;

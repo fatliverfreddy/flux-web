@@ -1,22 +1,22 @@
 package controllers
 
 import (
-	"os"
-	"time"
 	"bytes"
+	"encoding/json"
 	"errors"
+	"io/ioutil"
+	"net/http"
+	"os"
 	"strconv"
 	"strings"
-	"net/http"
-	"io/ioutil"
-	"encoding/json"
+	"time"
 
 	"flux-web/models"
 
 	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/logs"
-	"github.com/astaxie/beego/httplib"
 	"github.com/astaxie/beego/context"
+	"github.com/astaxie/beego/httplib"
+	"github.com/astaxie/beego/logs"
 )
 
 type WorkloadController struct {
@@ -179,10 +179,10 @@ func GetImages(params ...string) []models.Image {
 }
 
 func Auth(c *context.Context) {
-	if readOnly, err := strconv.ParseBool(os.Getenv("READ_ONLY")); err != nil  {
+	if readOnly, err := strconv.ParseBool(os.Getenv("READ_ONLY")); err != nil {
 		c.Abort(401, "Not boolean value for READ_ONLY")
 		return
-	} else if readOnly{
+	} else if readOnly {
 		c.Abort(401, "Not authorized")
 		return
 	}

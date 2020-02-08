@@ -1,5 +1,6 @@
 <template>
   <div class="workloads-list">
+    <span class="namespace-label">Namespace:</span>
     <namespace-select></namespace-select>
     <vue-good-table
       :columns="columns"
@@ -112,27 +113,39 @@ export default class WorkloadsList extends Vue {
 <style lang="scss">
 @import "../../assets/scss/include";
 
+/* Scrollbar Style */
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 /* Track */
 ::-webkit-scrollbar-track {
   display: none;
   background: #f1f1f1;
 }
-
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #99a9c2;
   &:hover {
     background: #4b5677;
   }
-  &:active{
+  &:active {
     background: #303b5d;
   }
+}
 
+.namespace-label {
+  color: #2e395a;
+  font-weight: 400;
+  font-size: 15px;
+  font-family: "Ubuntu", sans-serif;
+  float: left;
+  padding-right: 10px;
+  transform: translateY(40%);
+  -ms-transform: translateY(40%);
+  -moz-transform: translateY(40%);
+  -webkit-transform: translateY(40%);
+  -o-transform: translateY(40%);
 }
 
 .workloads-list {
