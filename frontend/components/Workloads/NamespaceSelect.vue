@@ -1,5 +1,11 @@
 <template>
   <div class="namespace-select" v-show="namespaces.length">
+    <div class="loading-overlay" v-if="loading">
+      <div class="lds-ripple">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <select
       v-model="namespace"
       class="namespace-input"
@@ -79,6 +85,58 @@ export default class NamespaceSelect extends Vue {
 <style scoped lang="scss">
 @import "../../assets/scss/include";
 
+.loading-overlay {
+  position: fixed; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.4
+  ); /* White background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid rgb(50, 127, 243);
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
 .namespace-select {
   margin-bottom: 10px;
   .namespace-input {
