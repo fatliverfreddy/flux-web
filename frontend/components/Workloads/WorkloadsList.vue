@@ -21,7 +21,10 @@
           @input="tagChanged"
           v-else-if="props.column.field == 'available_tags'"
         />
-        <span v-else>{{props.formattedRow[props.column.field]}}</span>
+        <div v-else>
+          <span v-if="props.formattedRow[props.column.field].length<70">{{props.formattedRow[props.column.field]}}</span>
+          <span v-else>{{props.formattedRow[props.column.field].substring(0,70)+"..."}}</span>
+        </div>
       </template>
     </vue-good-table>
   </div>
@@ -208,9 +211,6 @@ export default class WorkloadsList extends Vue {
         padding-top: 2px;
         padding-bottom: 2px;
         max-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
       }
       th {
         color: #2e395a;
