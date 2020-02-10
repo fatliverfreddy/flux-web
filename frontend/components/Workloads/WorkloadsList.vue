@@ -51,27 +51,33 @@ export default class WorkloadsList extends Vue {
   public columns = [
     {
       label: "Workload",
-      field: "workload"
+      field: "workload",
+      width: "20%"
     },
     {
       label: "Container",
-      field: "container"
+      field: "container",
+      width: "13%"
     },
     {
       label: "Image",
-      field: "image"
+      field: "image",
+      width: "32%"
     },
     {
       label: "Current tag",
-      field: "current_tag.tag"
+      field: "current_tag.tag",
+      width: "10%"
     },
     {
       label: "Status",
-      field: "status"
+      field: "status",
+      width: "5%"
     },
     {
       label: "Available tags",
       field: "available_tags",
+      width: "15%",
       sortable: false
     }
   ];
@@ -97,7 +103,8 @@ export default class WorkloadsList extends Vue {
     if (this.$env.READ_ONLY != "true") {
       this.columns.push({
         label: "Action",
-        field: "action"
+        field: "action",
+        width: "5%"
       });
     }
   }
@@ -175,6 +182,7 @@ export default class WorkloadsList extends Vue {
     font-family: sans-serif;
     border-collapse: collapse;
     border-radius: 7px;
+    width: 100%;
     &.striped {
       tr {
         &:nth-child(odd) {
@@ -199,6 +207,10 @@ export default class WorkloadsList extends Vue {
         vertical-align: middle;
         padding-top: 2px;
         padding-bottom: 2px;
+        max-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       th {
         color: #2e395a;
