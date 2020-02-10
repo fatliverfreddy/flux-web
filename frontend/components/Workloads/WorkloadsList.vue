@@ -153,8 +153,11 @@ export default class WorkloadsList extends Vue {
   visibility: hidden;
 }
 .vgt-text-disabled:after {
-  content:'No workloads found in namespace.'; 
+  content: "No workloads found in namespace.";
   visibility: visible;
+  font-size: 16px;
+  display: block;
+  padding-bottom: 15px;
 }
 
 .workloads-list {
