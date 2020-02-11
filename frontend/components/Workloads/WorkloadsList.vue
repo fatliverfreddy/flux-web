@@ -22,10 +22,9 @@
           v-else-if="props.column.field == 'available_tags'"
         />
         <div v-else>
+          <!-- TODO: add tooltip for truncated text -->
           <div class="text-td">
-            <span
-              class="tooltiptext"
-            >{{props.formattedRow[props.column.field]}}</span>
+            <span>{{props.formattedRow[props.column.field]}}</span>
           </div>
         </div>
       </template>
