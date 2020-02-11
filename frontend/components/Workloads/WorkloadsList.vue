@@ -22,9 +22,10 @@
           v-else-if="props.column.field == 'available_tags'"
         />
         <div v-else>
-          <span v-if="props.formattedRow[props.column.field].length<70">{{props.formattedRow[props.column.field]}}</span>
-          <div class="tooltip" v-else>{{props.formattedRow[props.column.field].substring(0,70)+"..."}}
-            <span class="tooltiptext">{{props.formattedRow[props.column.field]}}</span>
+          <div class="text-td">
+            <span
+              class="tooltiptext"
+            >{{props.formattedRow[props.column.field]}}</span>
           </div>
         </div>
       </template>
@@ -195,6 +196,14 @@ export default class WorkloadsList extends Vue {
   &:active {
     background: #303b5d;
   }
+}
+
+.text-td {
+  overflow: hidden;
+  width: -moz-available; /* WebKit-based browsers will ignore this. */
+  width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+  width: fill-available;
+  text-overflow: ellipsis;
 }
 
 .namespace-label {
