@@ -21,7 +21,12 @@
           @input="tagChanged"
           v-else-if="props.column.field == 'available_tags'"
         />
-        <span v-else>{{props.formattedRow[props.column.field]}}</span>
+        <div v-else>
+          <!-- TODO: add tooltip for truncated text -->
+          <div class="text-td">
+            <span>{{props.formattedRow[props.column.field]}}</span>
+          </div>
+        </div>
       </template>
     </vue-good-table>
   </div>
@@ -51,27 +56,33 @@ export default class WorkloadsList extends Vue {
   public columns = [
     {
       label: "Workload",
-      field: "workload"
+      field: "workload",
+      width: "20%"
     },
     {
       label: "Container",
-      field: "container"
+      field: "container",
+      width: "13%"
     },
     {
       label: "Image",
-      field: "image"
+      field: "image",
+      width: "32%"
     },
     {
       label: "Current tag",
-      field: "current_tag.tag"
+      field: "current_tag.tag",
+      width: "10%"
     },
     {
       label: "Status",
-      field: "status"
+      field: "status",
+      width: "5%"
     },
     {
       label: "Available tags",
       field: "available_tags",
+      width: "15%",
       sortable: false
     }
   ];
@@ -97,7 +108,8 @@ export default class WorkloadsList extends Vue {
     if (this.$env.READ_ONLY != "true") {
       this.columns.push({
         label: "Action",
-        field: "action"
+        field: "action",
+        width: "5%"
       });
     }
   }
@@ -112,6 +124,57 @@ export default class WorkloadsList extends Vue {
 
 <style lang="scss">
 @import "../../assets/scss/include";
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 100%;
+  background-color: #2f395b;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Font Styling */
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -50px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
 
 /* Scrollbar Style */
 /* width */
@@ -134,6 +197,14 @@ export default class WorkloadsList extends Vue {
   }
 }
 
+.text-td {
+  overflow: hidden;
+  width: -moz-available; /* WebKit-based browsers will ignore this. */
+  width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+  width: fill-available;
+  text-overflow: ellipsis;
+}
+
 .namespace-label {
   color: #2e395a;
   font-weight: 400;
@@ -153,8 +224,11 @@ export default class WorkloadsList extends Vue {
   visibility: hidden;
 }
 .vgt-text-disabled:after {
-  content:'No workloads found in namespace.'; 
+  content: "No workloads found in namespace.";
   visibility: visible;
+  font-size: 16px;
+  display: block;
+  padding-bottom: 15px;
 }
 
 .workloads-list {
@@ -172,6 +246,7 @@ export default class WorkloadsList extends Vue {
     font-family: sans-serif;
     border-collapse: collapse;
     border-radius: 7px;
+    width: 100%;
     &.striped {
       tr {
         &:nth-child(odd) {
@@ -196,6 +271,7 @@ export default class WorkloadsList extends Vue {
         vertical-align: middle;
         padding-top: 2px;
         padding-bottom: 2px;
+        max-width: 0;
       }
       th {
         color: #2e395a;
