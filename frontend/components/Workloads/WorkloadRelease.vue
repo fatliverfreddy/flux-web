@@ -53,8 +53,7 @@ export default class WorkloadRelease extends Vue {
     this.releaseVersion({ workload: this.workload, releaseData });
   }
 
-  public toggleDropdown(event) {
-    console.log(event.currentTarget.classList);
+  public toggleDropdown(event: any) {
     event.currentTarget.classList.toggle("is-active");
   }
 }
