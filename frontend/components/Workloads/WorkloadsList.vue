@@ -1,7 +1,5 @@
 <template>
   <div class="workloads-list">
-    <span class="namespace-label">Namespace:</span>
-    <namespace-select></namespace-select>
     <vue-good-table
       :columns="columns"
       :rows="workloads"
@@ -37,7 +35,6 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 import { StoreNamespaces } from "../../store/types/StoreNamespaces";
 import WorkloadAvailableTags from "./WorkloadAvailableTags.vue";
 import WorkloadRelease from "./WorkloadRelease.vue";
-import NamespaceSelect from "./NamespaceSelect.vue";
 import WorkloadStatus from "./WorkloadStatus.vue";
 import { namespace } from "vuex-class";
 import { Getter, Action } from "vuex-class";
@@ -47,7 +44,6 @@ import { Tag } from "../../store/types/Workloads/Tag";
 @Component({
   components: {
     WorkloadAvailableTags,
-    NamespaceSelect,
     WorkloadRelease,
     WorkloadStatus
   }
@@ -179,7 +175,7 @@ export default class WorkloadsList extends Vue {
 /* Scrollbar Style */
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 /* Track */
 ::-webkit-scrollbar-track {
@@ -205,20 +201,6 @@ export default class WorkloadsList extends Vue {
   text-overflow: ellipsis;
 }
 
-.namespace-label {
-  color: #2e395a;
-  font-weight: 400;
-  font-size: 15px;
-  font-family: "Ubuntu", sans-serif;
-  float: left;
-  padding-right: 10px;
-  transform: translateY(40%);
-  -ms-transform: translateY(40%);
-  -moz-transform: translateY(40%);
-  -webkit-transform: translateY(40%);
-  -o-transform: translateY(40%);
-}
-
 /* Hack to replace empty table text */
 .vgt-text-disabled {
   visibility: hidden;
@@ -232,9 +214,8 @@ export default class WorkloadsList extends Vue {
 }
 
 .workloads-list {
-  height: calc(100% - 110px);
+  height: 90%;
   min-height: 250px;
-  padding: 15px 0;
   box-sizing: border-box;
   overflow-y: scroll;
 

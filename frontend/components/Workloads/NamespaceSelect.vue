@@ -138,7 +138,6 @@ export default class NamespaceSelect extends Vue {
   }
 }
 .namespace-select {
-  margin-bottom: 10px;
   .namespace-input {
     height: 30px;
     border-radius: 7px;
