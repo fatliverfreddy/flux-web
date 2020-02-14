@@ -9,6 +9,7 @@ export const actions: ActionTree<NamespacesState, RootState> = {
             if (response.status !== 200 || !Array.isArray(response.data)) {
                 throw "Error when retirieving namespaces"
             }
+
             commit('UPDATE_NAMESPACES', response.data)
         },
     ),

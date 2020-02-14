@@ -58,12 +58,12 @@ export default class WorkloadsList extends Vue {
     {
       label: "Container",
       field: "container",
-      width: "13%"
+      width: "12%"
     },
     {
       label: "Image",
       field: "image",
-      width: "32%"
+      width: "31%"
     },
     {
       label: "Current tag",
@@ -105,7 +105,7 @@ export default class WorkloadsList extends Vue {
       this.columns.push({
         label: "Action",
         field: "action",
-        width: "5%"
+        width: "7%"
       });
     }
   }
