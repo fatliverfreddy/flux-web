@@ -8,6 +8,7 @@
       >{{getWorkload(workload).status == statuses.releasing ? 'Relasing' : 'Release'}}</button>
     </span>
     <span>
+      <!-- TODO: Add reset button to the "More" dialog to deselect the tag -->
       <button
         class="more-button"
         :disabled="!getWorkload(workload).selected_tag.tag || getWorkload(workload).status == statuses.releasing"
