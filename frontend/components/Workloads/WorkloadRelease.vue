@@ -1,22 +1,29 @@
 <template>
   <div class="button-div">
-    <span>
+    <div class="button-release">
       <button
-        class="release-button"
+        class="button release"
         :disabled="!getWorkload(workload).selected_tag.tag || getWorkload(workload).status == statuses.releasing"
         @click="release(workload)"
-      >{{getWorkload(workload).status == statuses.releasing ? 'Relasing' : 'Release'}}</button>
-    </span>
-    <span>
+      >{{getWorkload(workload).status == statuses.releasing ? 'Releasing' : 'Release'}}</button>
+    </div>
+    <div class="button-more">
       <!-- TODO: Add reset button to the "More" dialog to deselect the tag -->
       <button
-        class="more-button"
+        class="button more"
         :disabled="!getWorkload(workload).selected_tag.tag || getWorkload(workload).status == statuses.releasing"
         @click="toggleDropdown($event)"
       >
         <i class="fas fa-caret-down"></i>
       </button>
-    </span>
+      <div class="button-more__content">
+        <ul>
+          <li>Lorem ipsum</li>
+          <li>Lorem ipsum dolor sit</li>
+          <li>Lorem ipsum dolor</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -62,63 +69,45 @@ export default class WorkloadRelease extends Vue {
 .button-div {
   font-size: 0;
   text-align: center;
-}
+  .button-release {
+    float: left;
+  }
+  .button-more {
+    float: left;
+    &__content {
+      float: left;
+      position: absolute;
+      right: 50px;
+      height: 300px;
+      width: 200px;
+      opacity: 0;
+      overflow: hidden;
+      padding: 15px 10px;
+      transition: opacity 0.3s;
+      visibility: hidden;
+      ul {
+        height: 100%;
+        width: 100%;
+        li {
+          color: white;
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+  }
 
-.release-button {
-  background: #343d5d;
-  padding: 8px;
-  color: #fff;
-  border-radius: 5px 0 0 5px;
-  font-family: "Ubuntu", sans-serif;
-  font-size: 11px;
-  transition-duration: 0.2s;
-  border: solid;
-  border-color: #5c6484;
-  border-width: 0 0.5px 0 0;
-  &:hover {
-    background: #5c6484;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
-    cursor: pointer;
-  }
-  &:active {
-    background: #5c6484;
-    box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, 0.4),
-      inset 0 1px 3px 0 rgba(0, 0, 0, 0.25);
-    cursor: pointer;
-  }
-  &:focus {
-    outline: 0;
-  }
-  &:disabled {
-    cursor: not-allowed;
-    background: #f0f0fa;
-    color: #b9b3b3;
-    border: solid;
-    border-color: #343d5d10 #343d5d20 #343d5d10 #343d5d10;
-    border-width: 0.5px;
-    box-shadow: none;
-  }
-}
-
-.more-button {
-  background: #343d5d;
-  padding: 8px 5px;
-  color: #fff;
-  border-radius: 0 5px 5px 0;
-  font-family: "Ubuntu", sans-serif;
-  font-size: 11px;
-  border: none;
-  transition-duration: 0.2s;
-  i.fas {
-    transition: 0.3s;
-  }
-  &.is-active {
-    background: #5c6484;
-    box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.4),
-      inset 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+  .button {
+    background: #343d5d;
+    color: #fff;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 11px;
+    transition-duration: 0.2s;
     &:hover {
-      box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.4),
-        inset 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+      background: #5c6484;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4),
+        0 1px 3px 0 rgba(0, 0, 0, 0.19);
+      cursor: pointer;
     }
     &:active {
       background: #5c6484;
@@ -126,34 +115,68 @@ export default class WorkloadRelease extends Vue {
         inset 0 1px 3px 0 rgba(0, 0, 0, 0.25);
       cursor: pointer;
     }
-    i.fas {
-      &.fa-caret-down {
-        transform: rotate(180deg);
-      }
+    &:focus {
+      outline: 0;
+    }
+    &:disabled {
+      cursor: not-allowed;
+      background: #f0f0fa;
+      color: #b9b3b3;
+      border: solid;
+      box-shadow: none;
     }
   }
-  &:hover {
-    background: #5c6484;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
-    cursor: pointer;
-  }
-  &:active {
-    background: #5c6484;
-    box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, 0.4),
-      inset 0 1px 3px 0 rgba(0, 0, 0, 0.25);
-    cursor: pointer;
-  }
-  &:focus {
-    outline: 0;
-  }
-  &:disabled {
-    cursor: not-allowed;
-    background: #f0f0fa;
-    color: #b9b3b3;
+
+  .release {
+    padding: 8px;
+    border-radius: 5px 0 0 5px;
     border: solid;
-    border-color: #343d5d10;
-    border-width: 0.5px 0.5px 0.5px 0;
-    box-shadow: none;
+    border-color: #5c6484;
+    border-width: 0 0.5px 0 0;
+    &:disabled {
+      border-color: #343d5d10 #343d5d20 #343d5d10 #343d5d10;
+      border-width: 0.5px;
+    }
+  }
+
+  .more {
+    padding: 8px 5px;
+    border-radius: 0 5px 5px 0;
+    border: none;
+    i.fas {
+      transition: 0.3s;
+    }
+    &.is-active {
+      background: #5c6484;
+      box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.4),
+        inset 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+      &:hover {
+        box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.4),
+          inset 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+      }
+      &:active {
+        background: #5c6484;
+        box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, 0.4),
+          inset 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+      }
+      i.fas {
+        &.fa-caret-down {
+          transform: rotate(180deg);
+        }
+      }
+
+      + .button-more__content {
+        // height: 100%;
+        opacity: 1;
+        visibility: visible;
+        background: rgba(255, 0, 0, 0.432);
+      }
+    }
+    &:disabled {
+      border-color: #343d5d10;
+      border-width: 0.5px 0.5px 0.5px 0;
+    }
   }
 }
 </style>
