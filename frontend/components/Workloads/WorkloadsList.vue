@@ -199,9 +199,7 @@ export default class WorkloadsList extends Vue {
 
 .text-td {
   overflow: hidden;
-  width: -moz-available; /* WebKit-based browsers will ignore this. */
-  width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-  width: fill-available;
+  width: stretch;
   text-overflow: ellipsis;
 }
 
