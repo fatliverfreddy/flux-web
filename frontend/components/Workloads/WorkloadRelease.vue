@@ -14,11 +14,7 @@
         :disabled="!getWorkload(workload).selected_tag.tag || getWorkload(workload).status == statuses.releasing"
         @click="toggleDropdown($event)"
       >
-        <div class="icon-wrapper">
-          &nbsp;&nbsp;&nbsp;
-          <i class="fas fa-caret-down" aria-hidden="true"></i>
-          <i class="fas fa-caret-up" aria-hidden="true"></i>
-        </div>
+        <i class="fas fa-caret-down"></i>
       </button>
     </span>
   </div>
@@ -81,12 +77,13 @@ export default class WorkloadRelease extends Vue {
   border-width: 0 0.5px 0 0;
   &:hover {
     background: #5c6484;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.4), 0 3px 8px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
     cursor: pointer;
   }
   &:active {
-    background: #4a506b;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
+    background: #5c6484;
+    box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, 0.4),
+      inset 0 1px 3px 0 rgba(0, 0, 0, 0.25);
     cursor: pointer;
   }
   &:focus {
@@ -112,36 +109,38 @@ export default class WorkloadRelease extends Vue {
   font-size: 11px;
   border: none;
   transition-duration: 0.2s;
-  .icon-wrapper {
-    position: relative;
-    height: 100%;
-  }
   i.fas {
-    position: absolute;
-    left: 0;
-    transition: opacity 0.3s;
-    &.fa-caret-up {
-      opacity: 0;
-    }
+    transition: 0.3s;
   }
   &.is-active {
+    background: #5c6484;
+    box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.4),
+      inset 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+    &:hover {
+      box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.4),
+        inset 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+    }
+    &:active {
+      background: #5c6484;
+      box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, 0.4),
+        inset 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+    }
     i.fas {
-      &.fa-caret-up {
-        opacity: 1;
-      }
       &.fa-caret-down {
-        opacity: 0;
+        transform: rotate(180deg);
       }
     }
   }
   &:hover {
     background: #5c6484;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.4), 0 3px 8px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
     cursor: pointer;
   }
   &:active {
-    background: #4a506b;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
+    background: #5c6484;
+    box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, 0.4),
+      inset 0 1px 3px 0 rgba(0, 0, 0, 0.25);
     cursor: pointer;
   }
   &:focus {
