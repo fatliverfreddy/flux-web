@@ -10,10 +10,10 @@
 .icon {
   background-position: center center;
   background-size: contain;
-  width: 30px;
-  height: 30px;
+  width: 15px;
+  height: 15px;
+  padding-left: 20px;
   background-repeat: no-repeat;
-
 }
 
 /* Tooltip container */

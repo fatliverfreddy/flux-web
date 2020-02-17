@@ -11,7 +11,7 @@
     >
       <template slot="table-row" slot-scope="props">
         <workload-release :workload="props.row" v-if="props.column.field == 'action'"></workload-release>
-        <workload-status :workload="props.row" v-else-if="props.column.field == 'status'" />
+        <workload-status :workload="props.row" v-else-if="props.column.field == 'latest'" />
         <workload-available-tags
           :options-prop="props.row.available_tags"
           :current-tag="props.row.current_tag"
@@ -71,8 +71,8 @@ export default class WorkloadsList extends Vue {
       width: "10%"
     },
     {
-      label: "Status",
-      field: "status",
+      label: "Latest",
+      field: "latest",
       width: "5%"
     },
     {
