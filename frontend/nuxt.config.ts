@@ -19,25 +19,30 @@ export default {
     './assets/scss/_main.scss'
   ],
   mode: 'universal',
-  build: { },
-  buildModules: ["@nuxt/typescript-build"],
+  build: {},
+  buildModules: [
+    ['@nuxt/typescript-build', {
+      typeCheck: true,
+      ignoreNotFoundWarnings: true
+    }]
+  ],
   modules: [
     "@nuxtjs/axios",
     ['nuxt-env', {
       keys: [
-        'NODE_ENV', 
-        'API_EXTERNAL_URL', 
-        'WS_URL', 
+        'NODE_ENV',
+        'API_EXTERNAL_URL',
+        'WS_URL',
         'READ_ONLY',
       ]
     }]
   ],
-  plugins: [ 
-      '~/plugins/vue-good-table',
-      { src: '~/plugins/vue-native-websocket', ssr: false },
-      { src: '~/plugins/localStorage', ssr: false },
-      '~/plugins/axios'
-    ],
+  plugins: [
+    '~/plugins/vue-good-table',
+    { src: '~/plugins/vue-native-websocket', ssr: false },
+    { src: '~/plugins/localStorage', ssr: false },
+    '~/plugins/axios'
+  ],
   axios: {
   },
 }
