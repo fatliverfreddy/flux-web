@@ -41,7 +41,8 @@ import { WorkloadStatuses } from "../../store/types/Workloads/WorkloadStatuses";
 @Component({
   methods: {
     clickOutsideDropdown(){
-      this.$refs.more_btn.classList.remove("is-active");
+      let moreBtn = this.$refs.more_btn as Element;
+      moreBtn.classList.remove("is-active");
     }
   }
 })
