@@ -18,9 +18,13 @@
       </button>
       <div class="button-more__content">
         <ul>
-          <li>Lorem ipsum</li>
-          <li>Lorem ipsum dolor sit</li>
-          <li>Lorem ipsum dolor</li>
+          <li>
+            <i class="fas fa-star"></i> Promote
+          </li>
+          <!-- <li>Lorem ipsum dolor sit</li> -->
+          <li>
+            <i class="fas fa-trash-alt"></i> Clear Tag
+          </li>
         </ul>
       </div>
     </div>
@@ -67,31 +71,56 @@ export default class WorkloadRelease extends Vue {
 @import "../../assets/scss/include";
 
 .button-div {
-  font-size: 0;
+  // TODO: make release button smaller when viewport too narrow.
   text-align: center;
+  float: left;
+  position: relative;
   .button-release {
     float: left;
+    white-space: nowrap;
   }
   .button-more {
-    float: left;
+    white-space: nowrap;
     &__content {
       float: left;
+      z-index: 999;
       position: absolute;
-      right: 50px;
-      height: 300px;
-      width: 200px;
+      right: 0;
       opacity: 0;
       overflow: hidden;
-      padding: 15px 10px;
       transition: opacity 0.3s;
       visibility: hidden;
+
+      font-family: "Ubuntu", sans-serif;
+      font-size: 12px;
+      background: #343d5de0;
+      border-radius: 5px 0 5px 5px;
+      box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3), 0 3px 9px 0 rgba(0, 0, 0, 0.1);
       ul {
-        height: 100%;
-        width: 100%;
+        list-style-type: none;
+        padding-left: 0;
+        margin: 0;
         li {
-          color: white;
-          height: 100%;
-          width: 100%;
+          color: #ffffffd7;
+          // padding: 7px 10px;
+          padding: 7px 15px 7px 10px;
+          transition: 0.1s;
+          i {
+            padding-right: 5px;
+          }
+          &:hover {
+            color: #ffffff;
+            background: #576185e0;
+            transition: 0.2s;
+            i.fas {
+              &.fa-star {
+                color: rgba(255, 255, 0, 0.856);
+              }
+              &.fa-trash-alt {
+                color: #b7ebffe0;
+              }
+            }
+          }
         }
       }
     }
@@ -167,10 +196,8 @@ export default class WorkloadRelease extends Vue {
       }
 
       + .button-more__content {
-        // height: 100%;
         opacity: 1;
         visibility: visible;
-        background: rgba(255, 0, 0, 0.432);
       }
     }
     &:disabled {
