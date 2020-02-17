@@ -7,9 +7,10 @@
         @click="release(workload)"
       >{{getWorkload(workload).status == statuses.releasing ? 'Releasing' : 'Release'}}</button>
     </div>
-    <div class="button-more">
+    <div class="button-more" v-click-outside="clickOutsideDropdown">
       <!-- TODO: Add reset button to the "More" dialog to deselect the tag -->
       <button
+        ref="more_btn"
         class="button more"
         :disabled="!getWorkload(workload).selected_tag.tag || getWorkload(workload).status == statuses.releasing"
         @click="toggleDropdown($event)"
@@ -37,7 +38,13 @@ import { StoreNamespaces } from "../../store/types/StoreNamespaces";
 import { Getter, Action } from "vuex-class";
 import { WorkloadStatuses } from "../../store/types/Workloads/WorkloadStatuses";
 
-@Component({})
+@Component({
+  methods: {
+    clickOutsideDropdown(){
+      this.$refs.more_btn.classList.remove("is-active");
+    }
+  }
+})
 export default class WorkloadRelease extends Vue {
   @Prop() protected workload: any;
 
@@ -102,9 +109,10 @@ export default class WorkloadRelease extends Vue {
         margin: 0;
         li {
           color: #ffffffd7;
-          // padding: 7px 10px;
           padding: 7px 15px 7px 10px;
           transition: 0.1s;
+          cursor: pointer;
+          user-select: none;
           i {
             padding-right: 5px;
           }
@@ -114,10 +122,10 @@ export default class WorkloadRelease extends Vue {
             transition: 0.2s;
             i.fas {
               &.fa-star {
-                color: rgba(255, 255, 0, 0.856);
+                color: #ffd000e0;
               }
               &.fa-trash-alt {
-                color: #b7ebffe0;
+                color: #ff8a8ae0;
               }
             }
           }
