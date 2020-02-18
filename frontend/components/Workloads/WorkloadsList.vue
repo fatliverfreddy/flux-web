@@ -1,7 +1,5 @@
 <template>
   <div class="workloads-list">
-    <span class="namespace-label">Namespace:</span>
-    <namespace-select></namespace-select>
     <vue-good-table
       :columns="columns"
       :rows="workloads"
@@ -13,7 +11,7 @@
     >
       <template slot="table-row" slot-scope="props">
         <workload-release :workload="props.row" v-if="props.column.field == 'action'"></workload-release>
-        <workload-status :workload="props.row" v-else-if="props.column.field == 'status'" />
+        <workload-status :workload="props.row" v-else-if="props.column.field == 'latest'" />
         <workload-available-tags
           :options-prop="props.row.available_tags"
           :current-tag="props.row.current_tag"
@@ -37,7 +35,6 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 import { StoreNamespaces } from "../../store/types/StoreNamespaces";
 import WorkloadAvailableTags from "./WorkloadAvailableTags.vue";
 import WorkloadRelease from "./WorkloadRelease.vue";
-import NamespaceSelect from "./NamespaceSelect.vue";
 import WorkloadStatus from "./WorkloadStatus.vue";
 import { namespace } from "vuex-class";
 import { Getter, Action } from "vuex-class";
@@ -47,7 +44,6 @@ import { Tag } from "../../store/types/Workloads/Tag";
 @Component({
   components: {
     WorkloadAvailableTags,
-    NamespaceSelect,
     WorkloadRelease,
     WorkloadStatus
   }
@@ -62,12 +58,12 @@ export default class WorkloadsList extends Vue {
     {
       label: "Container",
       field: "container",
-      width: "13%"
+      width: "12%"
     },
     {
       label: "Image",
       field: "image",
-      width: "32%"
+      width: "31%"
     },
     {
       label: "Current tag",
@@ -75,8 +71,8 @@ export default class WorkloadsList extends Vue {
       width: "10%"
     },
     {
-      label: "Status",
-      field: "status",
+      label: "Latest",
+      field: "latest",
       width: "5%"
     },
     {
@@ -109,7 +105,7 @@ export default class WorkloadsList extends Vue {
       this.columns.push({
         label: "Action",
         field: "action",
-        width: "5%"
+        width: "7%"
       });
     }
   }
@@ -179,7 +175,7 @@ export default class WorkloadsList extends Vue {
 /* Scrollbar Style */
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 /* Track */
 ::-webkit-scrollbar-track {
@@ -199,24 +195,8 @@ export default class WorkloadsList extends Vue {
 
 .text-td {
   overflow: hidden;
-  width: -moz-available; /* WebKit-based browsers will ignore this. */
-  width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-  width: fill-available;
+  width: stretch;
   text-overflow: ellipsis;
-}
-
-.namespace-label {
-  color: #2e395a;
-  font-weight: 400;
-  font-size: 15px;
-  font-family: "Ubuntu", sans-serif;
-  float: left;
-  padding-right: 10px;
-  transform: translateY(40%);
-  -ms-transform: translateY(40%);
-  -moz-transform: translateY(40%);
-  -webkit-transform: translateY(40%);
-  -o-transform: translateY(40%);
 }
 
 /* Hack to replace empty table text */
@@ -232,9 +212,8 @@ export default class WorkloadsList extends Vue {
 }
 
 .workloads-list {
-  height: calc(100% - 110px);
+  height: 90%;
   min-height: 250px;
-  padding: 15px 0;
   box-sizing: border-box;
   overflow-y: scroll;
 

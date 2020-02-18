@@ -8,6 +8,7 @@
       track-by="tag"
       :allow-empty="false"
       deselect-label="Can't remove this value"
+      selectedLabel=""
       @input="valueChanged"
     >
       <template slot="singleLabel" slot-scope="{ option }">
@@ -28,13 +29,27 @@
 <style lang="scss">
 @import "../../assets/scss/include";
 
-.selected__tag {
-  font-family: "Ubuntu Mono", monospace;
-  font-size: 14px;
-}
-
 .available-tag-select-wrapper {
-  min-width: max-content;
+  width: 100%;
+  .multiselect__tags {
+    width: 100%;
+    .multiselect__placeholder {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: "Ubuntu Mono", monospace;
+      
+    }
+    .multiselect__single {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      .selected__tag {
+        font-family: "Ubuntu Mono", monospace;
+        font-size: 14px;
+      }
+    }
+  }
   .multiselect__content-wrapper {
     min-width: max-content;
     right: 0;

@@ -100,7 +100,7 @@ export default class NamespaceSelect extends Vue {
     0.4
   ); /* White background with opacity */
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
+  cursor: wait; /* Add a pointer on hover */
 }
 .lds-ripple {
   display: inline-block;
@@ -138,7 +138,6 @@ export default class NamespaceSelect extends Vue {
   }
 }
 .namespace-select {
-  margin-bottom: 10px;
   .namespace-input {
     height: 30px;
     border-radius: 7px;

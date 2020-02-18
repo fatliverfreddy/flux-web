@@ -1,21 +1,32 @@
 <template>
   <div class="workloads-search">
-    <i class="input-icon fas fa-search"></i>
-    <input
-      type="text"
-      name="search"
-      class="text-input"
-      placeholder="Search"
-      autocomplete="off"
-      v-model="searchTerm"
-      icon-class="fa-home"
-      @input="searchTermChanged"
-    />
+    <div class="search-div">
+      <i class="input-icon fas fa-search"></i>
+      <input
+        type="text"
+        name="search"
+        class="text-input"
+        placeholder="Search"
+        autocomplete="off"
+        v-model="searchTerm"
+        icon-class="fa-home"
+        @input="searchTermChanged"
+      />
+    </div>
+    <div class="filters-div">
+      <span class="namespace-label">Namespace:</span>
+      <namespace-select></namespace-select>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 @import "../../assets/scss/include";
+
+.search-div {
+  position: relative;
+  width: 100%;
+}
 
 .workloads-search {
   position: relative;
@@ -28,7 +39,7 @@
     width: 100%;
     box-sizing: border-box;
     padding: 0 0 0 40px;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: "Ubuntu", sans-serif;
     font-weight: 300;
     font-size: 13px;
     color: #6a6c71;
@@ -51,14 +62,39 @@
     font-size: 14px;
   }
 }
+
+.filters-div {
+  position: relative;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.namespace-label {
+  color: #2e395a;
+  font-weight: 400;
+  font-size: 15px;
+  font-family: "Ubuntu", sans-serif;
+  float: left;
+  padding-right: 10px;
+  transform: translateY(40%);
+  -ms-transform: translateY(40%);
+  -moz-transform: translateY(40%);
+  -webkit-transform: translateY(40%);
+  -o-transform: translateY(40%);
+}
 </style>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { StoreNamespaces } from "../../store/types/StoreNamespaces";
+import NamespaceSelect from "./NamespaceSelect.vue";
 import { Action } from "vuex-class";
 
-@Component({})
+@Component({
+  components: {
+    NamespaceSelect
+  }
+})
 export default class WorkloadSearch extends Vue {
   public searchTerm: string = "";
 

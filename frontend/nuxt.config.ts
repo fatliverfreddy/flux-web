@@ -41,6 +41,7 @@ export default {
     '~/plugins/vue-good-table',
     { src: '~/plugins/vue-native-websocket', ssr: false },
     { src: '~/plugins/localStorage', ssr: false },
+    '~/plugins/directives.ts',
     '~/plugins/axios'
   ],
   axios: {
