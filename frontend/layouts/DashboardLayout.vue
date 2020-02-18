@@ -1,11 +1,34 @@
 <template>
   <div class="container">
     <div class="main-wrapper">
-      <div class="left-side">
-        <navbar></navbar>
-      </div>
-      <div class="right-side">
-        <slot name="right-side"></slot>
+      <nav id="slide-menu">
+        <div class="logo">
+          <div>
+            <img src="@/assets/images/logo.png" />
+          </div>
+          <div>
+            <span>
+              <a :href="githubUrl" target="__blank">Flux Web v{{ fluxWebRelease }}</a>
+            </span>
+          </div>
+        </div>
+        <ul>
+          <li>
+            <i class="fas fa-cogs"></i> Workloads
+          </li>
+          <li>Events</li>
+          <li>Calendar</li>
+          <li class="sep">Settings</li>
+          <li>Logout</li>
+        </ul>
+      </nav>
+      <div id="content">
+        <div class="menu-trigger" v-click-outside="clickOutsideMenu">
+          <i class="fas fa-bars"></i>
+        </div>
+        <div class="right-side">
+          <slot name="right-side"></slot>
+        </div>
       </div>
     </div>
   </div>
@@ -15,20 +38,221 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Navbar from "~/components/Navbar.vue";
+import Config from "~/config";
 
 @Component({
+  mounted() {
+    var $body = document.body,
+      $menu_trigger = $body.getElementsByClassName("menu-trigger")[0];
+
+    if (typeof $menu_trigger !== "undefined") {
+      $menu_trigger.addEventListener("click", function() {
+        $body.className = $body.className == "menu-active" ? "" : "menu-active";
+      });
+    }
+  },
   components: {
     Navbar
+  },
+  methods: {
+    clickOutsideMenu() {
+      var $body = document.body;
+
+      $body.className = "";
+    }
   }
 })
-export default class CallScreenLayout extends Vue {}
+export default class CallScreenLayout extends Vue {
+  public fluxWebRelease = Config.config.fluxWebRelease;
+  public githubUrl = Config.config.githubUrl;
+}
 </script>
 
 <style scoped lang="scss">
 @import "../assets/scss/include";
 
-.container {
+/*
+  Menu
+*/
+nav#slide-menu {
+  position: fixed;
+  top: 0;
+  left: -100px;
+  bottom: 0;
+  display: block;
+  float: left;
+  width: 100%;
+  max-width: 284px;
+  height: 50%;
+  background: #343d5d;
 
+  -moz-transition: all 300ms;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+
+  .logo {
+    width: 100%;
+    padding-top: 15px;
+    padding-left: 40px;
+
+    img {
+      width: 50%;
+    }
+
+    span {
+      font-family: "Ubuntu", sans-serif;
+      font-size: 13px;
+      color: #fff;
+      a {
+        color: #fff;
+        text-decoration: none;
+        &:hover {
+          color: #ff6a58;
+        }
+      }
+    }
+  }
+
+  > ul {
+    display: block;
+    margin: 40px;
+    padding: 0;
+    list-style: none;
+    opacity: 0.5;
+    font-family: "Ubuntu", sans-serif;
+
+    -moz-transition: all 300ms;
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+
+    li {
+      color: #bfcddb;
+      padding: 6px 0;
+      cursor: pointer;
+      transition: 0.2s;
+
+      i {
+        padding-right: 5px;
+      }
+      &:hover {
+        color: #fff;
+        transition: 0.2s;
+        i.fas {
+          color: #ffd000e0;
+        }
+      }
+    }
+
+    li.sep {
+      margin-top: 7px;
+      padding-top: 14px;
+      border-top: 1px solid lighten(#556270, 10%);
+    }
+  }
+}
+
+body.menu-active nav#slide-menu {
+  left: 0px;
+}
+body.menu-active nav#slide-menu ul {
+  left: 0px;
+  opacity: 1;
+}
+
+/*
+  Content
+*/
+
+div#content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  border-radius: 0;
+  background: #fff;
+
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
+  -moz-box-shadow: -3px 0 6px darken(#556270, 5%);
+  -webkit-box-shadow: -3px 0 6px darken(#556270, 5%);
+  box-shadow: -3px 0 6px darken(#556270, 5%);
+
+  -moz-transition: all 300ms;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+
+  div.menu-trigger {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    width: 42px;
+    height: 42px;
+    background: #5c6484;
+    color: #fff;
+    z-index: 1;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+
+    i {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -moz-transform: translateX(-50%) translateY(-50%);
+      -webkit-transform: translateX(-50%) translateY(-50%);
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    -moz-transition: all 300ms;
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+
+    &:hover {
+      background: #5c6484;
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.4),
+        0 3px 9px 0 rgba(0, 0, 0, 0.19);
+      cursor: pointer;
+    }
+    &:active {
+      background: #5c6484;
+      box-shadow: inset 0 6px 15px 0 rgba(0, 0, 0, 0.4),
+        inset 0 3px 9px 0 rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+    }
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+body.menu-active div#content {
+  left: 284px;
+  border-radius: 7px 0 0 7px;
+}
+body.menu-active div#content .menu-trigger {
+  left: 299px;
+
+  background: #5c6484;
+  box-shadow: inset 0 3px 12px 0 rgba(0, 0, 0, 0.4),
+    inset 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+  &:hover {
+    background: #727a9b;
+    box-shadow: inset 0 3px 12px 0 rgba(0, 0, 0, 0.4),
+      inset 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+  }
+  &:active {
+    background: #5c6484;
+    box-shadow: inset 0 6px 15px 0 rgba(0, 0, 0, 0.4),
+      inset 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+  }
+}
+
+.container {
   height: 100%;
   position: fixed;
   width: 100%;
@@ -42,6 +266,7 @@ export default class CallScreenLayout extends Vue {}
   .main-wrapper {
     display: flex;
     flex-direction: row;
+    background: #343d5d;
     justify-content: center;
     z-index: 9999;
     position: relative;

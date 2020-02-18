@@ -118,7 +118,7 @@ export default class WorkloadRelease extends Vue {
             padding-right: 5px;
           }
           &:hover {
-            color: #ffffff;
+            color: #fff;
             background: #576185e0;
             transition: 0.2s;
             i.fas {

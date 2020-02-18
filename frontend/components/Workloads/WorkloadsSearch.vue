@@ -25,7 +25,8 @@
 
 .search-div {
   position: relative;
-  width: 100%;
+  // width: 97%;
+  padding-left: 57px;
 }
 
 .workloads-search {
@@ -55,7 +56,7 @@
   }
   .input-icon {
     position: absolute;
-    left: 10px;
+    left: 72px;
     top: 50%;
     color: #9095a4;
     transform: translateY(-50%);

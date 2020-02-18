@@ -212,7 +212,7 @@ export default class WorkloadsList extends Vue {
 }
 
 .workloads-list {
-  height: 90%;
+  height: 85%;
   min-height: 250px;
   box-sizing: border-box;
   overflow-y: scroll;
