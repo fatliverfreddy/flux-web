@@ -18,14 +18,26 @@
               <i class="fas fa-cogs"></i>Workloads
             </li>
           </a>
-          <li>Events</li>
-          <li>Calendar</li>
-          <a href="about">
+          <a href="#">
+            <li>
+              <i class="fas fa-clipboard-list"></i>Events
+            </li>
+          </a>
+          <a href="#">
+            <li>
+              <i class="fas fa-traffic-light"></i>Status
+            </li>
+          </a>
+          <a href="#">
             <li class="sep">
+              <i class="fas fa-tools"></i>Settings
+            </li>
+          </a>
+          <a href="about">
+            <li>
               <i class="fas fa-question"></i>About
             </li>
           </a>
-          <li>Logout</li>
         </ul>
       </nav>
       <div id="content">
@@ -127,7 +139,10 @@ nav#slide-menu {
     -webkit-transition: all 300ms;
     transition: all 300ms;
 
-    a:active {
+    a,
+    a:active,
+    a:visited,
+    a:hover {
       text-decoration: none;
     }
 
@@ -138,17 +153,22 @@ nav#slide-menu {
       transition: 0.2s;
       user-select: none;
       i {
+        width: 20px;
+        text-align: center;
         padding-right: 10px;
       }
       &:hover {
         color: #d0dbe6;
         transition: 0s;
         i.fas {
-          color: #ffd000e0;
+          color: #86baffe1;
         }
       }
       &:active {
         color: #fff;
+        i.fas {
+          color: #86bbff;
+        }
       }
     }
 
