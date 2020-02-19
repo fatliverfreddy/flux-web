@@ -22,7 +22,6 @@
           <li>
             <i class="fas fa-star"></i> Promote
           </li>
-          <!-- <li>Lorem ipsum dolor sit</li> -->
           <li>
             <i class="fas fa-trash-alt"></i> Clear Tag
           </li>
@@ -40,7 +39,7 @@ import { WorkloadStatuses } from "../../store/types/Workloads/WorkloadStatuses";
 
 @Component({
   methods: {
-    clickOutsideDropdown(){
+    clickOutsideDropdown() {
       let moreBtn = this.$refs.more_btn as Element;
       moreBtn.classList.remove("is-active");
     }

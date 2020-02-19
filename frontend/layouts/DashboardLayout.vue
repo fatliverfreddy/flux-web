@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="main-wrapper">
-      <nav id="slide-menu">
+      <nav id="slide-menu" v-click-outside="clickOutsideMenu">
         <div class="logo">
           <div>
             <img src="@/assets/images/logo.png" />
@@ -13,19 +13,25 @@
           </div>
         </div>
         <ul>
-          <li>
-            <i class="fas fa-cogs"></i> Workloads
-          </li>
+          <a href="/">
+            <li>
+              <i class="fas fa-cogs"></i>Workloads
+            </li>
+          </a>
           <li>Events</li>
           <li>Calendar</li>
-          <li class="sep">Settings</li>
+          <a href="about">
+            <li class="sep">
+              <i class="fas fa-question"></i>About
+            </li>
+          </a>
           <li>Logout</li>
         </ul>
       </nav>
       <div id="content">
-        <div class="menu-trigger" v-click-outside="clickOutsideMenu">
+        <button class="menu-trigger" @click="toggleMenu" ref="menu_btn">
           <i class="fas fa-bars"></i>
-        </div>
+        </button>
         <div class="right-side">
           <slot name="right-side"></slot>
         </div>
@@ -41,30 +47,26 @@ import Navbar from "~/components/Navbar.vue";
 import Config from "~/config";
 
 @Component({
-  mounted() {
-    var $body = document.body,
-      $menu_trigger = $body.getElementsByClassName("menu-trigger")[0];
-
-    if (typeof $menu_trigger !== "undefined") {
-      $menu_trigger.addEventListener("click", function() {
-        $body.className = $body.className == "menu-active" ? "" : "menu-active";
-      });
-    }
-  },
-  components: {
-    Navbar
-  },
   methods: {
-    clickOutsideMenu() {
-      var $body = document.body;
+    clickOutsideMenu(event) {
+      var body = document.body;
+      let menuBtn = this.$refs.menu_btn as Element;
 
-      $body.className = "";
+      if (event.target != menuBtn && event.target.parentElement != menuBtn) {
+        body.classList.remove("menu-active");
+      }
     }
   }
 })
 export default class CallScreenLayout extends Vue {
   public fluxWebRelease = Config.config.fluxWebRelease;
   public githubUrl = Config.config.githubUrl;
+
+  public toggleMenu(event: any) {
+    var body = document.body;
+
+    body.classList.toggle("menu-active");
+  }
 }
 </script>
 
@@ -82,8 +84,8 @@ nav#slide-menu {
   display: block;
   float: left;
   width: 100%;
+  height: 100%;
   max-width: 284px;
-  height: 50%;
   background: #343d5d;
 
   -moz-transition: all 300ms;
@@ -125,21 +127,28 @@ nav#slide-menu {
     -webkit-transition: all 300ms;
     transition: all 300ms;
 
+    a:active {
+      text-decoration: none;
+    }
+
     li {
-      color: #bfcddb;
+      color: #bfcddbc9;
       padding: 6px 0;
       cursor: pointer;
       transition: 0.2s;
-
+      user-select: none;
       i {
-        padding-right: 5px;
+        padding-right: 10px;
       }
       &:hover {
-        color: #fff;
-        transition: 0.2s;
+        color: #d0dbe6;
+        transition: 0s;
         i.fas {
           color: #ffd000e0;
         }
+      }
+      &:active {
+        color: #fff;
       }
     }
 
@@ -185,7 +194,7 @@ div#content {
   -webkit-transition: all 300ms;
   transition: all 300ms;
 
-  div.menu-trigger {
+  button.menu-trigger {
     position: fixed;
     top: 15px;
     left: 15px;
@@ -197,6 +206,7 @@ div#content {
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
+    border: none;
 
     i {
       position: absolute;
